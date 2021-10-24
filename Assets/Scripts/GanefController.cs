@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ganef : MonoBehaviour
+public class GanefController : MonoBehaviour
 {
     [SerializeField] private Transform _path;
     [SerializeField] private float _speed;

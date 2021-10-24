@@ -8,7 +8,8 @@ public class Alarm : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private float _rateChangeSound;
 
-    private bool _alarm = false;
+    private bool _isAlarm = false;
+    private const string _alarm = "Alarm";
 
     private void Start()
     {
@@ -17,7 +18,7 @@ public class Alarm : MonoBehaviour
 
     private void Update()
     {
-        if (_alarm)
+        if (_isAlarm)
         {
             if (_audioSource.volume < 1)
                 _audioSource.volume += Time.deltaTime / _rateChangeSound;
@@ -34,20 +35,20 @@ public class Alarm : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<Ganef>(out Ganef ganef))
+        if (collision.TryGetComponent<GanefController>(out GanefController ganef))
         {
             _audioSource.Play();
-            _animator.SetBool("Alarm", true);
-            _alarm = true;
+            _animator.SetBool(_alarm, true);
+            _isAlarm = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<Ganef>(out Ganef ganef))
+        if (collision.TryGetComponent<GanefController>(out GanefController ganef))
         {
-            _animator.SetBool("Alarm", false);
-            _alarm = false;
+            _animator.SetBool(_alarm, false);
+            _isAlarm = false;
         }
     }
 }
