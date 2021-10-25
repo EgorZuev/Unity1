@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GanefController : MonoBehaviour
+public class ThiefController : MonoBehaviour
 {
     [SerializeField] private Transform _path;
     [SerializeField] private float _speed;

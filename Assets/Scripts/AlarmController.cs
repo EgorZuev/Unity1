@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Alarm : MonoBehaviour
+public class AlarmController : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private float _rateChangeSound;
 
     private bool _isAlarm = false;
-    private const string _alarm = "Alarm";
+    private const string Alarm = "Alarm";
 
     private void Start()
     {
@@ -35,19 +35,19 @@ public class Alarm : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<GanefController>(out GanefController ganef))
+        if (collision.TryGetComponent<ThiefController>(out ThiefController ganef))
         {
             _audioSource.Play();
-            _animator.SetBool(_alarm, true);
+            _animator.SetBool(Alarm, true);
             _isAlarm = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<GanefController>(out GanefController ganef))
+        if (collision.TryGetComponent<ThiefController>(out ThiefController ganef))
         {
-            _animator.SetBool(_alarm, false);
+            _animator.SetBool(Alarm, false);
             _isAlarm = false;
         }
     }
